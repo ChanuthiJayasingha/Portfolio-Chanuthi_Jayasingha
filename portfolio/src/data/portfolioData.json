@@ -1,0 +1,62 @@
+{
+  "personal": {
+    "name": "Chanuthi Jayasingha",
+    "title": "Data Science & Full-Stack Engineering Undergraduate",
+    "tagline": "Passionate about solving complex problems through data analytics, machine learning models, and full-stack software development.",
+    "about": "Motivated and detail-oriented Data Science undergraduate at SLIIT (Current GPA: 3.60) with a focus on Machine Learning, Data Analytics, and Software Engineering. Experienced in building predictive models, data preprocessing pipelines, and scalable full-stack web applications.",
+    "location": "Dunagaha, Sri Lanka",
+    "email": "chanuthi.avindi@gmail.com",
+    "github": "https://github.com/ChanuthiJayasingha",
+    "linkedin": "https://www.linkedin.com/in/chanuthi-jayasingha"
+  },
+  "education": [
+    {
+      "degree": "BSc (Hons) in IT Specializing in Data Science",
+      "institution": "Sri Lanka Institute of Information Technology (SLIIT)",
+      "period": "2023 – Present",
+      "details": "Current Cumulative GPA: 3.60 / 4.00"
+    },
+    {
+      "degree": "GCE Advanced Level & Ordinary Level",
+      "institution": "Rathnavali Balika Vidyalaya, Gampaha",
+      "period": "2020 – 2023",
+      "details": "GCE A/L Arts Stream (ICT, English Literature, Economics) | GCE O/L: 9 As"
+    }
+  ],
+  "skills": [
+    {
+      "category": "Data Science & Machine Learning",
+      "items": ["Python", "Pandas", "NumPy", "Scikit-learn", "Matplotlib", "Seaborn", "Jupyter Notebook"]
+    },
+    {
+      "category": "Software Engineering & Web Development",
+      "items": ["Java", "React.js", "Express.js", "Spring Boot", "REST APIs", "Tailwind CSS", "Zod", "Multer"]
+    },
+    {
+      "category": "Databases & Cloud Solutions",
+      "items": ["SQL", "MySQL", "MongoDB", "Mongoose", "Supabase Storage"]
+    },
+    {
+      "category": "Languages & Certifications",
+      "items": ["English", "Sinhala", "German (Elementary A1)", "Data Visualization (LinkedIn)", "Creating AI Agents (LinkedIn)"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "cognitive-ivms",
+      "title": "Cognitive IVMS — Intelligent Vendor & Management System",
+      "description": "An AI-powered inventory and vendor management system developed for Singer Sri Lanka. Features machine learning models for demand forecasting, vendor optimization, feature engineering on sales datasets, and interactive analytics dashboards.",
+      "tech": ["Python", "Pandas", "Scikit-learn", "React.js", "Spring Boot", "MySQL"],
+      "github": "https://github.com/ChanuthiJayasingha",
+      "demo": ""
+    },
+    {
+      "id": "unisphere",
+      "title": "UniSphere — Campus Community Platform",
+      "description": "A full-stack student platform with modules for marketplace, tutoring, study groups, housing, and events. Features secure JWT authentication, Zod backend validation, Supabase cloud file storage, and scalable Mongoose architecture.",
+      "tech": ["MongoDB", "Express.js", "React.js", "Node.js", "Supabase", "JWT"],
+      "github": "https://github.com/ChanuthiJayasingha",
+      "demo": ""
+    }
+  ]
+}
