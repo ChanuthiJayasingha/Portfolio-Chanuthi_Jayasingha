@@ -17,13 +17,13 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-studio-bg/90 backdrop-blur-md border-b border-matte-black/15">
-      <nav className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <nav className="max-w-7xl mx-auto px-6 py-8 flex justify-between items-center">
         <a href="#" className="font-serif text-3xl font-bold tracking-tight text-matte-black hover:opacity-100 transition-opacity">
-          <span className="font-serif text-3xl font-bold tracking-tight text-matte-black hover:opacity-100 transition-opacity"></span>
+          <span className="font-serif text-4xl font-bold tracking-tight text-matte-black hover:opacity-100 transition-opacity"></span>
           
         </a>
         
-        <div className="hidden md:flex items-center space-x-8 text-xs font-mono tracking-widest uppercase text-matte-black/80">
+        <div className="hidden md:flex items-center space-x-8 text-s font-mono tracking-widest uppercase text-matte-black/90">
           {navLinks.map((link) => (
             <a key={link.name} href={link.href} className="hover:text-black transition-colors">
               {link.name}
