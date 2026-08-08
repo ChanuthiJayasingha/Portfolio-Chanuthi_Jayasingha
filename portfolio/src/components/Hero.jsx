@@ -7,7 +7,7 @@ export default function Hero() {
   const { personal } = portfolioData;
 
   return (
-    /* Added font-['Times_New_Roman',serif] to section class 👇 */
+    
     <section className="relative min-h-[90vh] flex items-center pt-16 pb-16 overflow-hidden font-['Times_New_Roman',serif]">
       <div className="max-w-7xl mx-auto px-6 w-full relative">
         

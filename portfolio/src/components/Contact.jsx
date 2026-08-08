@@ -30,83 +30,101 @@ export default function Contact() {
   };
 
   return (
-    <section className="relative min-h-[90vh] flex items-center pt-16 pb-16 overflow-hidden font-['Times_New_Roman',serif]">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-        
-        {/* Section Header */}
-        <div>
-          <h2 className="text-xs font-mono uppercase tracking-widest text-gray-400 mb-2">04. Contact</h2>
-          <p className="text-xl font-semibold text-gray-900">Let's Connect</p>
-          <p className="text-sm text-gray-600 mt-2">
-            Have a project in mind or an open role? Reach out directly or drop a message here.
-          </p>
-          <div className="mt-6">
-            <span className="text-xs font-mono text-gray-400 block uppercase">Email</span>
-            <a href={`mailto:${personal?.email}`} className="text-sm font-medium text-gray-900 hover:underline">
-              {personal?.email || 'email@example.com'}
-            </a>
+    <section 
+      id="contact" 
+      className="py-20 border-t border-matte-black/20 font-['Times_New_Roman',serif]"
+    >
+      {/* Centered Max Width Wrapper */}
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+          
+          {/* Left Column: Section Header Info (4 Columns) */}
+          <div className="md:col-span-4 space-y-4">
+            <h2 className="text-xs uppercase tracking-widest text-matte-black/60 font-sans">04. Contact</h2>
+            <p className="text-3xl font-bold text-matte-black">Let's Connect</p>
+            <p className="text-base text-matte-black/80 leading-relaxed pt-2">
+              Have a project in mind or an open role? Reach out directly or drop a message here.
+            </p>
+            
+            <div className="pt-6">
+              <span className="text-xs font-sans uppercase tracking-wider text-matte-black/60 block mb-1">
+                Direct Email
+              </span>
+              <a 
+                href={`mailto:${personal?.email}`} 
+                className="text-lg font-semibold text-matte-black hover:underline underline-offset-4"
+              >
+                {personal?.email || 'chanuthi.avindi@gmail.com'}
+              </a>
+            </div>
           </div>
-        </div>
 
-        {/* Contact Form */}
-        <div className="md:col-span-2">
-          <form ref={formRef} onSubmit={sendEmail} className="space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* Right Column: Contact Form (8 Columns) */}
+          <div className="md:col-span-8">
+            <form ref={formRef} onSubmit={sendEmail} className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-xs font-sans text-matte-black/70 mb-2 uppercase tracking-wider">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    name="user_name"
+                    required
+                    placeholder="Your Name"
+                    className="w-full bg-bone-white border border-matte-black/30 rounded-lg px-4 py-3 text-base text-matte-black focus:outline-none focus:border-matte-black transition-colors"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-sans text-matte-black/70 mb-2 uppercase tracking-wider">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    name="user_email"
+                    required
+                    placeholder="you@example.com"
+                    className="w-full bg-bone-white border border-matte-black/30 rounded-lg px-4 py-3 text-base text-matte-black focus:outline-none focus:border-matte-black transition-colors"
+                  />
+                </div>
+              </div>
+
               <div>
-                <label className="block text-xs font-mono text-gray-500 mb-1 uppercase">Name</label>
-                <input
-                  type="text"
-                  name="user_name"
+                <label className="block text-xs font-sans text-matte-black/70 mb-2 uppercase tracking-wider">
+                  Message
+                </label>
+                <textarea
+                  name="message"
                   required
-                  placeholder="Your Name"
-                  className="w-full bg-white border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 focus:outline-none focus:border-black transition-colors"
-                />
+                  rows="5"
+                  placeholder="How can I help you?"
+                  className="w-full bg-bone-white border border-matte-black/30 rounded-lg px-4 py-3 text-base text-matte-black focus:outline-none focus:border-matte-black transition-colors resize-none"
+                ></textarea>
               </div>
-              <div>
-                <label className="block text-xs font-mono text-gray-500 mb-1 uppercase">Email</label>
-                <input
-                  type="email"
-                  name="user_email"
-                  required
-                  placeholder="you@example.com"
-                  className="w-full bg-white border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 focus:outline-none focus:border-black transition-colors"
-                />
-              </div>
-            </div>
 
-            <div>
-              <label className="block text-xs font-mono text-gray-500 mb-1 uppercase">Message</label>
-              <textarea
-                name="message"
-                required
-                rows="5"
-                placeholder="How can I help you?"
-                className="w-full bg-white border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 focus:outline-none focus:border-black transition-colors resize-none"
-              ></textarea>
-            </div>
+              <button
+                type="submit"
+                disabled={status.loading}
+                className="inline-flex items-center gap-2.5 bg-matte-black text-studio-bg px-8 py-3.5 rounded-lg text-sm font-semibold hover:bg-matte-black/85 disabled:opacity-50 transition-colors cursor-pointer shadow-sm"
+              >
+                {status.loading ? 'Sending...' : 'Send Message'} <Send size={15} />
+              </button>
 
-            <button
-              type="submit"
-              disabled={status.loading}
-              className="inline-flex items-center gap-2 bg-black text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 disabled:opacity-50 transition-colors"
-            >
-              {status.loading ? 'Sending...' : 'Send Message'} <Send size={14} />
-            </button>
+              {/* Status Feedback */}
+              {status.success && (
+                <div className="flex items-center gap-2 text-emerald-700 text-sm pt-2">
+                  <CheckCircle2 size={16} /> Message sent successfully!
+                </div>
+              )}
+              {status.error && (
+                <div className="flex items-center gap-2 text-rose-700 text-sm pt-2">
+                  <AlertCircle size={16} /> {status.error}
+                </div>
+              )}
+            </form>
+          </div>
 
-            {/* Status Feedback */}
-            {status.success && (
-              <div className="flex items-center gap-2 text-emerald-600 text-sm pt-2">
-                <CheckCircle2 size={16} /> Message sent successfully!
-              </div>
-            )}
-            {status.error && (
-              <div className="flex items-center gap-2 text-rose-600 text-sm pt-2">
-                <AlertCircle size={16} /> {status.error}
-              </div>
-            )}
-          </form>
         </div>
-
       </div>
     </section>
   );
