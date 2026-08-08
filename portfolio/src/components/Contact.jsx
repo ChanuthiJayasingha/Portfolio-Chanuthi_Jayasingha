@@ -1,32 +1,40 @@
-import React, { useRef, useState } from 'react';
-import emailjs from '@emailjs/browser';
+import React, { useState } from 'react';
 import { Send, CheckCircle2, AlertCircle } from 'lucide-react';
 import portfolioData from '../data/portfolioData.json';
 
 export default function Contact() {
-  const formRef = useRef();
+  const [formData, setFormData] = useState({ user_name: '', user_email: '', message: '' });
   const [status, setStatus] = useState({ loading: false, success: false, error: null });
   const { personal } = portfolioData;
 
-  const sendEmail = (e) => {
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const sendEmail = async (e) => {
     e.preventDefault();
     setStatus({ loading: true, success: false, error: null });
 
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-    emailjs.sendForm(serviceId, templateId, formRef.current, publicKey)
-      .then(
-        () => {
-          setStatus({ loading: false, success: true, error: null });
-          formRef.current.reset();
+    try {
+      const response = await fetch('http://localhost:5000/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-        (error) => {
-          setStatus({ loading: false, success: false, error: 'Failed to send message. Please try again.' });
-          console.error('EmailJS Error:', error);
-        }
-      );
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message.');
+      }
+
+      setStatus({ loading: false, success: true, error: null });
+      setFormData({ user_name: '', user_email: '', message: '' });
+    } catch (error) {
+      setStatus({ loading: false, success: false, error: error.message });
+    }
   };
 
   return (
@@ -34,11 +42,9 @@ export default function Contact() {
       id="contact" 
       className="py-20 border-t border-matte-black/20 font-['Times_New_Roman',serif]"
     >
-      {/* Centered Max Width Wrapper */}
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
           
-          {/* Left Column: Section Header Info (4 Columns) */}
           <div className="md:col-span-4 space-y-4">
             <h2 className="text-xs uppercase tracking-widest text-matte-black/60 font-sans">04. Contact</h2>
             <p className="text-3xl font-bold text-matte-black">Let's Connect</p>
@@ -59,9 +65,8 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right Column: Contact Form (8 Columns) */}
           <div className="md:col-span-8">
-            <form ref={formRef} onSubmit={sendEmail} className="space-y-6">
+            <form onSubmit={sendEmail} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-xs font-sans text-matte-black/70 mb-2 uppercase tracking-wider">
@@ -70,6 +75,8 @@ export default function Contact() {
                   <input
                     type="text"
                     name="user_name"
+                    value={formData.user_name}
+                    onChange={handleChange}
                     required
                     placeholder="Your Name"
                     className="w-full bg-bone-white border border-matte-black/30 rounded-lg px-4 py-3 text-base text-matte-black focus:outline-none focus:border-matte-black transition-colors"
@@ -82,6 +89,8 @@ export default function Contact() {
                   <input
                     type="email"
                     name="user_email"
+                    value={formData.user_email}
+                    onChange={handleChange}
                     required
                     placeholder="you@example.com"
                     className="w-full bg-bone-white border border-matte-black/30 rounded-lg px-4 py-3 text-base text-matte-black focus:outline-none focus:border-matte-black transition-colors"
@@ -95,6 +104,8 @@ export default function Contact() {
                 </label>
                 <textarea
                   name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   required
                   rows="5"
                   placeholder="How can I help you?"
@@ -110,7 +121,6 @@ export default function Contact() {
                 {status.loading ? 'Sending...' : 'Send Message'} <Send size={15} />
               </button>
 
-              {/* Status Feedback */}
               {status.success && (
                 <div className="flex items-center gap-2 text-emerald-700 text-sm pt-2">
                   <CheckCircle2 size={16} /> Message sent successfully!
