@@ -5,7 +5,7 @@ export default function About() {
   const { personal, education } = portfolioData;
 
   return (
-    /* Added font-['Times_New_Roman',serif] right here 👇 */
+    
     <section 
       id="about" 
       className="max-w-5xl mx-auto px-6 py-20 border-t border-matte-black/20 font-['Times_New_Roman',serif]"

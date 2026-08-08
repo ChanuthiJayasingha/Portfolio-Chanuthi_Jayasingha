@@ -37,10 +37,13 @@
       "items": ["SQL", "MySQL", "MongoDB", "Mongoose", "Supabase Storage"]
     },
     {
-      "category": "Languages & Certifications",
-      "items": ["English", "Sinhala", "German (Elementary A1)", "Data Visualization (LinkedIn)", "Creating AI Agents (LinkedIn)"]
+      "category": "Languages ",
+      "items": ["English", "Sinhala", "German (Elementary A1)"]
+    },
+    {
+      "category":"Certifications",
+      "items": ["Data Visualization (LinkedIn)", "Creating AI Agents (LinkedIn)"]
     }
-    
   ],
   "projects": [
     {
