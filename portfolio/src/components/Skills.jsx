@@ -7,28 +7,29 @@ export default function Skills() {
   return (
     <section 
       id="skills" 
-      className="max-w-5xl mx-auto px-6 py-20 border-t border-matte-black/20 font-['Times_New_Roman',serif]"
+      style={{ fontFamily: '"Times New Roman", Times, serif' }}
+      className="max-w-5xl mx-auto px-6 py-16 border-t border-matte-black/20"
     >
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div className="flex flex-col space-y-8">
         
         {/* Section Header */}
         <div>
-          <h2 className="text-xs font-mono uppercase tracking-widest text-gray-400 mb-2">02. Stack</h2>
-          <p className="text-xl font-semibold text-gray-900">Skills & Tech</p>
+          <h2 className="text-xs uppercase tracking-widest text-matte-black/60 mb-1 font-sans">02. Stack</h2>
+          <p className="text-3xl font-bold text-matte-black">Skills & Tech</p>
         </div>
 
-        {/* Skills Grid */}
-        <div className="md:col-span-2 space-y-6">
+        {/* Skills Grid Stacked Below */}
+        <div className="space-y-6">
           {skills.map((skillGroup, index) => (
             <div key={index} className="space-y-3">
-              <h3 className="text-xs font-mono uppercase tracking-wider text-gray-400">
+              <h3 className="text-xs uppercase tracking-wider text-matte-black/60 font-sans">
                 {skillGroup.category}
               </h3>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2.5">
                 {skillGroup.items.map((skill, i) => (
                   <span
                     key={i}
-                    className="px-3 py-1 bg-gray-100/80 hover:bg-gray-200/80 text-gray-800 text-xs font-medium rounded transition-colors"
+                    className="px-3.5 py-1.5 bg-bone-white border border-matte-black/20 text-matte-black text-sm font-medium rounded-md hover:border-matte-black transition-colors"
                   >
                     {skill}
                   </span>
