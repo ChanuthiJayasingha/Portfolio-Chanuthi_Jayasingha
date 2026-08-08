@@ -30,7 +30,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="max-w-5xl mx-auto px-6 py-20 border-t border-gray-200/80">
+    <section className="relative min-h-[90vh] flex items-center pt-16 pb-16 overflow-hidden font-['Times_New_Roman',serif]">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
         
         {/* Section Header */}

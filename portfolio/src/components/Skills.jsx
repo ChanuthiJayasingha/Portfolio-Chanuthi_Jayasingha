@@ -5,7 +5,10 @@ export default function Skills() {
   const skills = portfolioData?.skills || [];
 
   return (
-    <section id="skills" className="max-w-5xl mx-auto px-6 py-20 border-t border-gray-200/80">
+    <section 
+      id="skills" 
+      className="max-w-5xl mx-auto px-6 py-20 border-t border-matte-black/20 font-['Times_New_Roman',serif]"
+    >
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
         
         {/* Section Header */}

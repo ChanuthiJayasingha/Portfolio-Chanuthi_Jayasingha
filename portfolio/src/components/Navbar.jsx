@@ -4,10 +4,9 @@ import portfolioData from '../data/portfolioData.json';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  
-  // Safely fallback if data structure varies
-  const name = portfolioData?.personal?.name || 'Developer';
+  const name = portfolioData?.personal?.name || 'Chanuthi Jayasingha';
   const firstName = name.split(' ')[0];
+  const lastName = name.split(' ')[1] || '';
 
   const navLinks = [
     { name: 'About', href: '#about' },
@@ -17,45 +16,38 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-[#fcfcfc]/80 backdrop-blur-md border-b border-gray-200/60">
-      <nav className="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-        {/* Brand/Logo */}
-        <a href="#" className="font-bold text-lg tracking-tight hover:opacity-70 transition-opacity">
-          {firstName}<span className="text-gray-400">.dev</span>
+    <header className="sticky top-0 z-50 bg-studio-bg/90 backdrop-blur-md border-b border-matte-black/15">
+      <nav className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="#" className="font-serif text-3xl font-bold tracking-tight text-matte-black hover:opacity-100 transition-opacity">
+          {firstName} <span className="font-serif text-3xl font-bold tracking-tight text-matte-black hover:opacity-100 transition-opacity">{lastName}</span>
+          
         </a>
-
-        {/* Desktop Links */}
-        <div className="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+        
+        <div className="hidden md:flex items-center space-x-8 text-xs font-mono tracking-widest uppercase text-matte-black/80">
           {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-gray-600 hover:text-black transition-colors"
-            >
+            <a key={link.name} href={link.href} className="hover:text-black transition-colors">
               {link.name}
             </a>
           ))}
         </div>
 
-        {/* Mobile Hamburger Toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-gray-700 hover:text-black focus:outline-none"
+          className="md:hidden text-matte-black focus:outline-none"
           aria-label="Toggle Navigation Menu"
         >
           {isOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </nav>
 
-      {/* Mobile Menu Dropdown */}
       {isOpen && (
-        <div className="md:hidden bg-[#fcfcfc] border-b border-gray-200 px-6 py-4 flex flex-col space-y-4 text-sm font-medium">
+        <div className="md:hidden bg-studio-bg border-b border-matte-black/20 px-6 py-4 flex flex-col space-y-4 text-xs font-mono uppercase">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className="text-gray-600 hover:text-black transition-colors"
+              className="text-matte-black/80 hover:text-black transition-colors"
             >
               {link.name}
             </a>
