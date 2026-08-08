@@ -19,7 +19,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 bg-studio-bg/90 backdrop-blur-md border-b border-matte-black/15">
       <nav className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         <a href="#" className="font-serif text-3xl font-bold tracking-tight text-matte-black hover:opacity-100 transition-opacity">
-          {firstName} <span className="font-serif text-3xl font-bold tracking-tight text-matte-black hover:opacity-100 transition-opacity">{lastName}</span>
+          <span className="font-serif text-3xl font-bold tracking-tight text-matte-black hover:opacity-100 transition-opacity"></span>
           
         </a>
         
