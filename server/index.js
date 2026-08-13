@@ -28,13 +28,18 @@ app.use(cors({
 
 app.use(express.json());
 
-// Transporter configuration
+// Transporter configuration - Forcing IPv4 & Port 587 for Render compatibility
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false, // true for 465, false for other ports
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
+  dnsTimeout: 5000,
+  // Force Node.js to use IPv4 instead of IPv6 on Render
+  family: 4 
 });
 
 app.post('/api/contact', async (req, res) => {
