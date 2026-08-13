@@ -4,16 +4,19 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
-const cors = require('cors');
 
-// Allow requests from Vite frontend
+// Allow requests from localhost AND your Vercel production frontend
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
+  origin: [
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
+    'https://portfolio-chanuthi-jaya-git-55ddc4-chanuthijayasinghas-projects.vercel.app/', // Add your exact Vercel frontend URL here
+    /\.vercel\.app$/                           // Allows any preview deployment on Vercel
+  ],
   credentials: true
 }));
 
 app.use(express.json());
-app.use(cors());
 
 // Transporter configuration
 const transporter = nodemailer.createTransport({
