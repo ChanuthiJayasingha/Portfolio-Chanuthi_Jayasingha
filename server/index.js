@@ -5,15 +5,25 @@ require('dotenv').config();
 
 const app = express();
 
-// Allow requests from localhost AND your Vercel production frontend
+// Allowed origins check function
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://127.0.0.1:5173',
+  'https://portfolio-chanuthi-jaya-git-55ddc4-chanuthijayasinghas-projects.vercel.app'
+];
+
 app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    'http://127.0.0.1:5173',
-    'https://portfolio-chanuthi-jaya-git-55ddc4-chanuthijayasinghas-projects.vercel.app', // Add your exact Vercel frontend URL here
-    /\.vercel\.app$/                           // Allows any preview deployment on Vercel
-  ],
-  credentials: true
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps or curl) or matching origins/vercel previews
+    if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(express.json());
