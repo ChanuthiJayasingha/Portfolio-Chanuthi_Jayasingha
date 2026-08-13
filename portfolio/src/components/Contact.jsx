@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Send, CheckCircle2, AlertCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 import portfolioData from '../data/portfolioData.json';
 
 export default function Contact() {
+  const formRef = useRef();
   const [formData, setFormData] = useState({ user_name: '', user_email: '', message: '' });
   const [status, setStatus] = useState({ loading: false, success: false, error: null });
   const { personal } = portfolioData;
@@ -11,30 +13,27 @@ export default function Contact() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const sendEmail = async (e) => {
+  const sendEmail = (e) => {
     e.preventDefault();
     setStatus({ loading: true, success: false, error: null });
 
-    try {
-      const response = await fetch('https://portfolio-backend-kuac.onrender.com/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+    emailjs
+      .sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
+      .then(
+        (result) => {
+          setStatus({ loading: false, success: true, error: null });
+          setFormData({ user_name: '', user_email: '', message: '' });
         },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to send message.');
-      }
-
-      setStatus({ loading: false, success: true, error: null });
-      setFormData({ user_name: '', user_email: '', message: '' });
-    } catch (error) {
-      setStatus({ loading: false, success: false, error: error.message });
-    }
+        (error) => {
+          console.error('EmailJS Error:', error);
+          setStatus({ loading: false, success: false, error: 'Failed to send message. Please try again.' });
+        }
+      );
   };
 
   return (
@@ -66,7 +65,7 @@ export default function Contact() {
           </div>
 
           <div className="md:col-span-8">
-            <form onSubmit={sendEmail} className="space-y-6">
+            <form ref={formRef} onSubmit={sendEmail} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-xs font-sans text-matte-black/70 mb-2 uppercase tracking-wider">
