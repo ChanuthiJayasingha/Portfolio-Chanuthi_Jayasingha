@@ -4,6 +4,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
+const cors = require('cors');
 
 // Allow requests from Vite frontend
 app.use(cors({
@@ -12,6 +13,7 @@ app.use(cors({
 }));
 
 app.use(express.json());
+app.use(cors());
 
 // Transporter configuration
 const transporter = nodemailer.createTransport({
